@@ -1,34 +1,29 @@
 package com.jmlearning.designpatterns.behavioral.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
+// client
 public class CommandDemo {
 
     public static void main(String[] args) {
 
-        Task task1 = new Task(10, 12); // encapsulate request
-        Task task2 = new Task(11, 13);
+        Light bedroomLight = new Light();
+        Light kitchenLight = new Light();
+        Switch lightSwitch = new Switch();
 
-        Thread thread1 = new Thread(task1);
-        thread1.start(); // invoker
+        Command toggleCommand = new ToggleCommand(bedroomLight);
 
-        Thread thread2 = new Thread(task2);
-        thread2.start();
-    }
-}
+        lightSwitch.storeAndExecute(toggleCommand);
+//        lightSwitch.storeAndExecute(toggleCommand);
+//        lightSwitch.storeAndExecute(toggleCommand);
 
-class Task implements Runnable {
+        List<Light> lights = new ArrayList<>();
+        lights.add(kitchenLight);
+        lights.add(bedroomLight);
 
-    int num1;
-    int num2;
+        Command allLightsCommand = new AllLightsCommand(lights);
 
-    Task(int num1, int num2) {
-
-        this.num1 = num1;
-        this.num2 = num2;
-    }
-
-    @Override
-    public void run() { // execute method
-
-        System.out.println(num1 * num2); // receiver
+        lightSwitch.storeAndExecute(allLightsCommand);
     }
 }
