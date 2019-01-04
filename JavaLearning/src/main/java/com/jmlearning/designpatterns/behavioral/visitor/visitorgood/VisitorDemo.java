@@ -10,5 +10,6 @@ public class VisitorDemo {
         order.addPart(new Oil());
 
         order.accept(new AtvPartsShippingVisitor());
+        order.accept(new AtvPartsDisplayVisitor());
     }
 }
