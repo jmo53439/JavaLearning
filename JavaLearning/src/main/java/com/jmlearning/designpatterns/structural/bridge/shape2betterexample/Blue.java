@@ -1,0 +1,10 @@
+package com.jmlearning.designpatterns.structural.bridge.shape2betterexample;
+
+public class Blue implements Color {
+
+    @Override
+    public void applyColor() {
+
+        System.out.println("Applying blue color");
+    }
+}
