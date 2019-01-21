@@ -66,7 +66,9 @@ public class ProducerConsumerWithLocks {
                     try {
 
                         lock.lock();
-                        int i = 10/0;
+                        
+                        // exception example
+                        // int i = 10/0;
 
                         while(isFull(buffer)) {
 
