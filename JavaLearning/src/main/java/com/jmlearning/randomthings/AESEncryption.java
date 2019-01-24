@@ -1,6 +1,7 @@
 //package com.jmlearning.randomthings;
 //
 //import javax.crypto.*;
+// why did this suddenly stop working..
 //import javax.xml.bind.DatatypeConverter;
 //import java.security.InvalidKeyException;
 //import java.security.NoSuchAlgorithmException;
