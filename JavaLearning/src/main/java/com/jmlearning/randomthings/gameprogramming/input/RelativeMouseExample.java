@@ -142,6 +142,7 @@ public class RelativeMouseExample extends JFrame implements Runnable {
                 }
             }
             while(bs.contentsRestored());
+            bs.show();
         }
         while(bs.contentsLost());
     }
