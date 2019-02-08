@@ -59,4 +59,70 @@ public class Vector2f {
         y = y + sy * x;
         x = tmp;
     }
+
+    public Vector2f add(Vector2f v) {
+
+        return new Vector2f(x + v.x, y + v.y);
+    }
+
+    public Vector2f subtract(Vector2f v) {
+
+        return new Vector2f(x - v.x, y - v.y);
+    }
+
+    public Vector2f multiply(float scalar) {
+
+        return new Vector2f(scalar * x, scalar * y);
+    }
+
+    public Vector2f divide(float scalar) {
+
+        return new Vector2f(x / scalar, y / scalar);
+    }
+
+    public Vector2f inv() {
+
+        return new Vector2f(-x, -y);
+    }
+
+    public Vector2f norm() {
+
+        return divide(len());
+    }
+
+    public float dot(Vector2f v) {
+
+        return x * v.x + y * v.y;
+    }
+
+    public float len() {
+
+        return (float) Math.sqrt(x * x + y * y);
+    }
+
+    public float lenSqr() {
+
+        return x * x + y * y;
+    }
+
+    public Vector2f perp() {
+
+        return new Vector2f(-y, x);
+    }
+
+    public float angle() {
+
+        return (float) Math.atan2(y, x);
+    }
+
+    public static Vector2f polar(float angle, float radius) {
+
+        return new Vector2f(radius * (float) Math.cos(angle), radius * (float) Math.sin(angle));
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format("(%s,%s)", x, y);
+    }
 }
