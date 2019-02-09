@@ -157,7 +157,7 @@ public class PointInPolygonExample extends SimpleFramework {
             }
 
             g.setColor(selected ? Color.GREEN : Color.BLUE);
-            Utility.drawPolyGon(g, polyCpy);
+            Utility.drawPolygon(g, polyCpy);
         }
 
         // draw inside point blue, outside red
