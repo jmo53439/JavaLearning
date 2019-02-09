@@ -53,4 +53,28 @@ public class Utility {
             S = P;
         }
     }
+    
+    public static void fillPolygon(Graphics2D g, Vector2f[] polygon) {
+
+        Polygon p = new Polygon();
+
+        for(Vector2f v : polygon) {
+
+            p.addPoint((int) v.x, (int) v.y);
+        }
+
+        g.fill(p);
+    }
+
+    public static void fillPolygon(Graphics2D g, List<Vector2f> polygon) {
+
+        Polygon p = new Polygon();
+
+        for(Vector2f v : polygon) {
+
+            p.addPoint((int) v.x, (int) v.y);
+        }
+
+        g.fill(p);
+    }
 }
