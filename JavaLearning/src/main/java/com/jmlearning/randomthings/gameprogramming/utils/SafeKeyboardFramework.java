@@ -143,6 +143,7 @@ public class SafeKeyboardFramework extends JFrame implements Runnable {
     public void run() {
 
         running = true;
+        initialize();
         long currentTime = System.nanoTime();
         long previousTime = currentTime;
         double nsPerFrame;
