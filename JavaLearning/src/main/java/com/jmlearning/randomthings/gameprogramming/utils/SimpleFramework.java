@@ -29,6 +29,7 @@ public class SimpleFramework extends JFrame implements Runnable {
     protected float appWorldHeight = 2.0f;
     protected long appSleep = 10L;
     protected boolean appMaintainRatio = false;
+    protected int textPos = 0;
 
     public SimpleFramework() {
 
@@ -216,7 +217,7 @@ public class SimpleFramework extends JFrame implements Runnable {
         g.setFont(appFont);
         g.setColor(appFPSColor);
         frameRate.calculate();
-        g.drawString(frameRate.getFrameRate(), 20, 20);
+        textPos = Utility.drawString(g, 20, 0, frameRate.getFrameRate());
     }
 
     protected void updateObjects(float delta) {
