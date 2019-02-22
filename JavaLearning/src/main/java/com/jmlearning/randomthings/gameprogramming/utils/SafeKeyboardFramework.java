@@ -176,7 +176,7 @@ public class SafeKeyboardFramework extends JFrame implements Runnable {
         sleep(appSleep);
     }
 
-    private void processInput(float delta) {
+    protected void processInput(float delta) {
 
         keyboard.poll();
         mouse.poll();
