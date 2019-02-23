@@ -22,6 +22,21 @@ public class BlockingQueueExample {
 
             Message[] messages = Message.values();
 
+            for(int i = 0; i < numberOfMessages; ++i) {
+
+                try {
+
+                    int index = random.nextInt(messages.length - 2);
+                    queue.put(messages[index]);
+                    System.out.println("PUT(" + (i + 1) + ") " + messages[index]);
+                    sleep(sleep);
+                }
+                catch(InterruptedException ex) {
+
+                }
+            }
+
+            queue.put(messages[messages.length - 1]);
             return null;
         }
     }
@@ -55,7 +70,7 @@ public class BlockingQueueExample {
         MESSAGE_ONE,
         MESSAGE_TWO,
         MESSAGE_THREE,
-        QUIT;
+        QUIT
     }
 
     private ExecutorService exec;
