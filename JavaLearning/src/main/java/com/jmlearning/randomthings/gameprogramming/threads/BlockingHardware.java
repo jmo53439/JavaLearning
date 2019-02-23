@@ -26,6 +26,7 @@ public class BlockingHardware {
             public void event(
                     FakeHardware source, FakeHardware.FakeHardwareEvent event) {
 
+                handleHardwareEvent(source, event);
             }
         });
     }
