@@ -22,7 +22,7 @@ public abstract class AudioStream implements LineListener {
     protected FloatControl panControl;
     protected byte[] soundData;
     private List<BlockingAudioListener> listeners =
-            Collections.synchronizedList(new ArrayList <>());
+            Collections.synchronizedList(new ArrayList <BlockingAudioListener>());
 
     public AudioStream(byte[] soundData) {
 
@@ -115,6 +115,11 @@ public abstract class AudioStream implements LineListener {
         return gainControl != null;
     }
 
+    public float getGain() {
+
+        return hasGainControl() ? gainControl.getValue() : 0.0f;
+    }
+
     public void setGain(float fGain) {
 
         if(hasGainControl())
@@ -126,16 +131,22 @@ public abstract class AudioStream implements LineListener {
         return panControl != null;
     }
 
+    public float getPrecision() {
+
+        return hasPanControl() ? panControl.getPrecision() : 0.0f;
+    }
+
+    public float getPan() {
+
+        return hasPanControl() ? panControl.getValue() : 0.0f;
+    }
+
     public void setPan(float pan) {
 
         if(hasPanControl())
             panControl.setValue(pan);
     }
 
-    public float getGain() {
-
-        return hasGainControl() ? gainControl.getValue() : 0.0f;
-    }
 
     public float getMinimum() {
 
