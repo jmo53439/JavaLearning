@@ -1,6 +1,8 @@
 package com.jmlearning.randomthings.gamingprogramming.utils;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.List;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -95,18 +97,102 @@ public class Utility {
 
         return drawString(g, x, y, str.toArray(new String[0]));
     }
-    
+
     public static int drawString(Graphics g, int x, int y, String... str) {
-        
+
         FontMetrics fm = g.getFontMetrics();
         int height = fm.getAscent() + fm.getDescent() + fm.getLeading();
-        
+
         for(String s : str) {
-            
+
             g.drawString(s, x, y + fm.getAscent());
             y += height;
         }
-        
+
         return y;
+    }
+
+    public static int drawCenteredString(Graphics g, int w, int y, String str) {
+
+        return drawCenteredString(g, w, y, new String[] {str});
+    }
+
+    public static int drawCenteredString(Graphics g, int w, int y, List<String> str) {
+
+        return drawCenteredString(g, w, y, str.toArray(new String[0]));
+    }
+
+    public static int drawCenteredString(Graphics g, int w, int y, String... str) {
+
+        FontMetrics fm = g.getFontMetrics();
+        int height = fm.getAscent() + fm.getDescent() + fm.getLeading();
+
+        for(String s : str) {
+
+            Rectangle2D bounds = g.getFontMetrics().getStringBounds(s, g);
+            int x = (w - (int) bounds.getWidth()) / 2;
+            g.drawString(s, x, y + fm.getAscent());
+            y += height;
+        }
+
+        return y;
+    }
+
+    public static BufferedImage scaleImage(BufferedImage toScale, int targetWidth, int targetHeight) {
+
+        int width = toScale.getWidth();
+        int height = toScale.getHeight();
+
+        if(targetWidth < width || targetHeight < height) {
+
+            return scaleDownImage(toScale, targetWidth, targetHeight);
+        }
+        else {
+
+            return scaleUpImage(toScale, targetWidth, targetHeight);
+        }
+    }
+    
+    private static BufferedImage scaleDownImage(BufferedImage toScale, int targetWidth, int targetHeight) {
+        
+        int w = toScale.getWidth();
+        int h = toScale.getHeight();
+        
+        do {
+            
+            w = w / 2;
+            
+            if(w < targetWidth)
+                w = targetWidth;
+            
+            h = h / 2;
+            
+            if(h < targetHeight)
+                h = targetHeight;
+            
+            BufferedImage temp = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = temp.createGraphics();
+            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g2d.drawImage(toScale, 0, 0, w, h, null);
+            g2d.dispose();
+            toScale = temp;
+        }
+        while(w != targetWidth || h != targetHeight);
+        
+        return toScale;
+    }
+
+    private static BufferedImage scaleUpImage(BufferedImage toScale, int targetWidth, int targetHeight) {
+
+        BufferedImage image = new BufferedImage(
+                targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.drawImage(toScale, 0, 0, image.getWidth(), image.getHeight(), null);
+        g2d.dispose();
+
+        return image;
     }
 }
