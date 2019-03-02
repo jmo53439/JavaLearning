@@ -185,6 +185,14 @@ public abstract class GameFramework extends JFrame implements Runnable {
     protected void updateObjects(float delta) {
 
     }
+    
+    protected void render(Graphics g) {
+        
+        g.setFont(appFont);
+        g.setColor(appFPSColor);
+        frameRate.calculate();
+        textPOS = Utility.drawString(g, 20, 0, frameRate.getFrameRate());
+    }
 
     private void renderFrame() {
 
