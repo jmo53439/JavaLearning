@@ -27,7 +27,7 @@ public class WindowFramework extends GameFramework {
                 @Override
                 public void componentResized(ComponentEvent e) {
 
-                    onComponentResized();
+                    onComponentResized(e);
                 }
             });
         }
