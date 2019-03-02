@@ -56,6 +56,7 @@ public class WindowFramework extends GameFramework {
     protected void renderFrame(Graphics g) {
 
         g.clearRect(0, 0, getScreenWidth(), getScreenHeight());
+        render(g);
     }
 
     @Override
