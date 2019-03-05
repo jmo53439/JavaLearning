@@ -36,4 +36,21 @@ public class Acme {
         g.setColor(Color.GREEN);
         Utility.drawCenteredString(g, game.getScreenWidth(), 0, toShow);
     }
+    
+    public void drawLives(Graphics2D g, Matrix3x3f view, int lives) {
+
+        float w = ship.getWidth();
+        float h = ship.getHeight();
+        float x = -0.95f + w;
+        float y = 1.0f - h / 2.0f;
+
+        for(int i = 0; i < lives; ++i) {
+
+            x += w * i;
+            ship.setAngle((float) Math.toRadians(90));
+            ship.setPosition(new Vector2f(x, y));
+            ship.update(0.0f);
+            ship.draw(g, view);
+        }
+    }
 }
