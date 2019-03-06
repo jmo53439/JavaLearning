@@ -17,6 +17,11 @@ public class Sprite {
         this.topLeft = topLeft;
         this.bottomRight = bottomRight;
     }
+    
+    public void render(Graphics2D g, Matrix3x3f view) {
+        
+        render(g, view, new Vector2f(), 0.0f);
+    }
 
     public void render(Graphics2D g, Matrix3x3f view, Vector2f position, float angle) {
 
