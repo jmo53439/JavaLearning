@@ -6,7 +6,7 @@ import com.jmlearning.randomthings.gamingprogramming.gameusingeverything.admin.Q
 import com.jmlearning.randomthings.gamingprogramming.gameusingeverything.admin.QuickRestart;
 import com.jmlearning.randomthings.gamingprogramming.gameusingeverything.state.GameLoading;
 import com.jmlearning.randomthings.gamingprogramming.gameusingeverything.state.StateController;
-import com.jmlearning.randomthings.gamingprogramming.prototype.PolygonWrapper;
+import com.jmlearning.randomthings.gamingprogramming.gameusingeverything.object.PolygonWrapper;
 import com.jmlearning.randomthings.gamingprogramming.sound.LoopEvent;
 import com.jmlearning.randomthings.gamingprogramming.utils.WindowFramework;
 
@@ -14,6 +14,8 @@ import java.awt.*;
 
 public class FinishedProduct extends WindowFramework {
 
+    // add files at home and see if it works :)
+    
     private StateController controller;
 
     public FinishedProduct() {
