@@ -79,6 +79,14 @@ public class AsteroidExplosion {
         }
     }
     
+    public void render(Graphics2D g, Matrix3x3f view) {
+        
+        for(Particle p : particles) {
+            
+            p.draw(g, view);
+        }
+    }
+    
     public boolean isFinished() {
         
         return particles.size() == 0;
