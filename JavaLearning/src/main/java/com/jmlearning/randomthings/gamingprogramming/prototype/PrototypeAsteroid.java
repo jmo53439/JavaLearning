@@ -71,7 +71,7 @@ public class PrototypeAsteroid {
         return position;
     }
 
-    public void setPosition() {
+    public void setPosition(Vector2f position) {
 
         this.position = position;
     }

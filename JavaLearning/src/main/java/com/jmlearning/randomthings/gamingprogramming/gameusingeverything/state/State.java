@@ -18,7 +18,7 @@ public class State {
     public void setController(StateController controller) {
 
         this.controller = controller;
-        game = (FinishedProduct) controller.getAttribute("game");
+        game = (FinishedProduct) controller.getAttribute("gamingprogramming");
     }
 
     public void enter() {

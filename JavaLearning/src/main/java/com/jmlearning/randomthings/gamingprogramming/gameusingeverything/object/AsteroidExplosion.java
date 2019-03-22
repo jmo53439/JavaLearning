@@ -1,5 +1,6 @@
 package com.jmlearning.randomthings.gamingprogramming.gameusingeverything.object;
 
+import com.jmlearning.randomthings.gamingprogramming.utils.Matrix3x3f;
 import com.jmlearning.randomthings.gamingprogramming.utils.Vector2f;
 
 import java.awt.*;

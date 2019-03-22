@@ -6,7 +6,7 @@ import com.jmlearning.javaeightgoodbadpractices.Annotations.Ugly;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class IfStatementIsNotAlwaysABadThing {
+public class IfStatementsIsNotAlwaysABadThing {
     
     @Ugly
     class CombiningSomeOptionals {

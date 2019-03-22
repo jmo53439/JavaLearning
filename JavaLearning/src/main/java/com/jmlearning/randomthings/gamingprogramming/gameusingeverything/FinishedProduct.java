@@ -38,7 +38,7 @@ public class FinishedProduct extends WindowFramework {
         super.initialize();
 
         controller = new StateController();
-        controller.setAttribute("game", this);
+        controller.setAttribute("gamingprogramming", this);
         controller.setAttribute("keys", keyboard);
         controller.setAttribute("ACME", new Acme(this));
         controller.setAttribute("wrapper",
