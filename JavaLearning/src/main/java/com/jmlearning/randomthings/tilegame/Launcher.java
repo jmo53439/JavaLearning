@@ -4,6 +4,6 @@ public class Launcher {
     
     public static void main(String[] args) {
         
-        new Game("Meow!", 400, 400);
+        new Game("Meow!", 640, 480);
     }
 }
