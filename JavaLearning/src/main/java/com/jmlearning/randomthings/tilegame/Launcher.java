@@ -1,11 +1,9 @@
 package com.jmlearning.randomthings.tilegame;
 
-import com.jmlearning.randomthings.tilegame.display.Display;
-
 public class Launcher {
     
     public static void main(String[] args) {
         
-        new Display("Meow!", 400, 400);
+        new Game("Meow!", 400, 400);
     }
 }
