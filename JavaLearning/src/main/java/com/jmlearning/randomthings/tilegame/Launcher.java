@@ -6,6 +6,6 @@ public class Launcher {
     
     public static void main(String[] args) {
         
-        new Display("Meow!", 300, 300);
+        new Display("Meow!", 400, 400);
     }
 }
