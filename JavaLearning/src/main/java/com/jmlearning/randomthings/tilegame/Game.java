@@ -18,6 +18,7 @@ public class Game implements Runnable {
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
+    int x = 0;
     
     public Game(String title, int width, int height) {
         
@@ -31,10 +32,35 @@ public class Game implements Runnable {
     
         init();
         
-        while(running) {
+        int fps = 60;
+        double timePerTick = 1000000000 / fps;
+        double delta = 0;
+        long currentTime;
+        long lastTime = System.nanoTime();
+        long timer = 0;
+        int ticks = 0;
         
-            tick();
-            render();
+        while(running) {
+            
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / timePerTick;
+            timer += currentTime - lastTime;
+            lastTime = currentTime;
+            
+            if(delta >= 1) {
+                
+                tick();
+                render();
+                ticks++;
+                delta--;
+            }
+            
+            if(timer >= 1000000000) {
+                
+                System.out.println("Ticks and Frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
         }
         
         stop();
@@ -48,6 +74,7 @@ public class Game implements Runnable {
     
     private void tick() {
     
+        x += 1;
     }
     
     private void render() {
@@ -64,7 +91,7 @@ public class Game implements Runnable {
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
         
-        g.drawImage(Assets.grass, 10, 10, null);
+        g.drawImage(Assets.grass, x, 10, null);
         
         bs.show();
         g.dispose();
