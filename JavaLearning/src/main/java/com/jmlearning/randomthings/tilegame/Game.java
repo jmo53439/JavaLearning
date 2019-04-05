@@ -1,9 +1,13 @@
 package com.jmlearning.randomthings.tilegame;
 
 import com.jmlearning.randomthings.tilegame.display.Display;
+import com.jmlearning.randomthings.tilegame.gfx.Assets;
+import com.jmlearning.randomthings.tilegame.gfx.ImageLoader;
+import com.jmlearning.randomthings.tilegame.gfx.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable {
     
@@ -39,6 +43,7 @@ public class Game implements Runnable {
     private void init() {
       
         display = new Display(title, width, height);
+        Assets.init();
     }
     
     private void tick() {
@@ -59,10 +64,7 @@ public class Game implements Runnable {
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
         
-        g.setColor(Color.RED);
-        g.fillRect(10, 50, 50, 70);
-        g.setColor(Color.GREEN);
-        g.fillRect(0, 0, 10, 10);
+        g.drawImage(Assets.grass, 10, 10, null);
         
         bs.show();
         g.dispose();
