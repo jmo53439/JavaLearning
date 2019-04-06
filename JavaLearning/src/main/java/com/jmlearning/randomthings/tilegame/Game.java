@@ -2,12 +2,11 @@ package com.jmlearning.randomthings.tilegame;
 
 import com.jmlearning.randomthings.tilegame.display.Display;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
-import com.jmlearning.randomthings.tilegame.gfx.ImageLoader;
-import com.jmlearning.randomthings.tilegame.gfx.SpriteSheet;
+import com.jmlearning.randomthings.tilegame.states.GameState;
+import com.jmlearning.randomthings.tilegame.states.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game implements Runnable {
     
@@ -18,7 +17,7 @@ public class Game implements Runnable {
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
-    int x = 0;
+    private State gameState;
     
     public Game(String title, int width, int height) {
         
@@ -70,11 +69,17 @@ public class Game implements Runnable {
       
         display = new Display(title, width, height);
         Assets.init();
+        
+        gameState = new GameState();
+        State.setState(gameState);
     }
     
     private void tick() {
     
-        x += 1;
+        if(State.getState() != null) {
+            
+            State.getState().tick();
+        }
     }
     
     private void render() {
@@ -91,7 +96,10 @@ public class Game implements Runnable {
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
         
-        g.drawImage(Assets.grass, x, 10, null);
+        if(State.getState() != null) {
+            
+            State.getState().render(g);
+        }
         
         bs.show();
         g.dispose();
