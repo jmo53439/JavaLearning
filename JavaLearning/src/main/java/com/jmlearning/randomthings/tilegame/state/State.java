@@ -1,10 +1,18 @@
 package com.jmlearning.randomthings.tilegame.states;
 
+import com.jmlearning.randomthings.tilegame.Game;
+
 import java.awt.*;
 
 public abstract class State {
     
     private static State currentState = null;
+    protected Game game;
+    
+    public State(Game game) {
+        
+        this.game = game;
+    }
     
     public static State getState() {
         
