@@ -1,7 +1,7 @@
 package com.jmlearning.randomthings.tilegame.states;
 
+import com.jmlearning.randomthings.tilegame.Game;
 import com.jmlearning.randomthings.tilegame.entities.creatures.Player;
-import com.jmlearning.randomthings.tilegame.gfx.Assets;
 
 import java.awt.*;
 
@@ -9,9 +9,10 @@ public class GameState extends State {
     
     private Player player;
     
-    public GameState() {
+    public GameState(Game game) {
     
-        player = new Player(100, 100);
+        super(game);
+        player = new Player(game, 100, 100);
     }
     
     @Override
