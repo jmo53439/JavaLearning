@@ -2,6 +2,7 @@ package com.jmlearning.randomthings.tilegame;
 
 import com.jmlearning.randomthings.tilegame.display.Display;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
+import com.jmlearning.randomthings.tilegame.input.KeyManager;
 import com.jmlearning.randomthings.tilegame.states.GameState;
 import com.jmlearning.randomthings.tilegame.states.MenuState;
 import com.jmlearning.randomthings.tilegame.states.State;
@@ -20,12 +21,14 @@ public class Game implements Runnable {
     private Graphics g;
     private State gameState;
     private State menuState;
+    private KeyManager keyManager;
     
     public Game(String title, int width, int height) {
         
         this.width = width;
         this.height = height;
         this.title = title;
+        keyManager = new KeyManager();
     }
     
     @Override
@@ -70,15 +73,18 @@ public class Game implements Runnable {
     private void init() {
       
         display = new Display(title, width, height);
+        display.getFrame().addKeyListener(keyManager);
         Assets.init();
         
-        gameState = new GameState();
-        menuState = new MenuState();
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
         State.setState(gameState);
     }
     
     private void tick() {
     
+        keyManager.tick();
+        
         if(State.getState() != null) {
             
             State.getState().tick();
@@ -106,6 +112,11 @@ public class Game implements Runnable {
         
         bs.show();
         g.dispose();
+    }
+    
+    public KeyManager getKeyManager() {
+        
+        return keyManager;
     }
     
     public synchronized void start() {
