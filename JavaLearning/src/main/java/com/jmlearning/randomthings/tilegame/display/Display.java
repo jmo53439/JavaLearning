@@ -40,4 +40,9 @@ public class Display {
         
         return canvas;
     }
+    
+    public JFrame getFrame() {
+        
+        return frame;
+    }
 }
