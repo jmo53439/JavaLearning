@@ -3,6 +3,7 @@ package com.jmlearning.randomthings.tilegame;
 import com.jmlearning.randomthings.tilegame.display.Display;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
 import com.jmlearning.randomthings.tilegame.states.GameState;
+import com.jmlearning.randomthings.tilegame.states.MenuState;
 import com.jmlearning.randomthings.tilegame.states.State;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
     private State gameState;
+    private State menuState;
     
     public Game(String title, int width, int height) {
         
@@ -71,6 +73,7 @@ public class Game implements Runnable {
         Assets.init();
         
         gameState = new GameState();
+        menuState = new MenuState();
         State.setState(gameState);
     }
     
