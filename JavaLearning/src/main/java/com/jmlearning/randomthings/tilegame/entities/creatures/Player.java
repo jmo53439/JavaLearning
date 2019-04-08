@@ -20,6 +20,7 @@ public class Player extends Creature {
     
         getInput();
         move();
+        game.getGameCamera().centerOnEntity(this);
     }
     
     private void getInput() {
@@ -43,6 +44,8 @@ public class Player extends Creature {
     @Override
     public void render(Graphics g) {
     
-        g.drawImage(Assets.player, (int) x, (int) y, null);
+        g.drawImage(Assets.player, (int)(x - game.getGameCamera().getxOffset()),
+                (int)(y - game.getGameCamera().getyOffset()),
+                width, height, null);
     }
 }
