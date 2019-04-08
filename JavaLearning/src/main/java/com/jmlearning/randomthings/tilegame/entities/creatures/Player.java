@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class Player extends Creature {
     
-    private Game game;
-    
     public Player(Game game, float x, float y) {
         
         super(game, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
