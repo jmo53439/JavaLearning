@@ -14,6 +14,9 @@ public abstract class State {
         this.game = game;
     }
     
+    public abstract void tick();
+    public abstract void render(Graphics g);
+    
     public static State getState() {
         
         return currentState;
@@ -23,7 +26,4 @@ public abstract class State {
         
         currentState = state;
     }
-    
-    public abstract void tick();
-    public abstract void render(Graphics g);
 }
