@@ -15,6 +15,9 @@ public abstract class Entity {
         this.height = height;
     }
     
+    public abstract void tick();
+    public abstract void render(Graphics g);
+    
     public float getX() {
         
         return x;
@@ -54,7 +57,4 @@ public abstract class Entity {
         
         this.height = height;
     }
-    
-    public abstract void tick();
-    public abstract void render(Graphics g);
 }
