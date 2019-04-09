@@ -1,6 +1,5 @@
 package com.jmlearning.randomthings.tilegame.entities.creatures;
 
-import com.jmlearning.randomthings.tilegame.Game;
 import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.entities.Entity;
 
