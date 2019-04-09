@@ -1,14 +1,15 @@
 package com.jmlearning.randomthings.tilegame.states;
 
 import com.jmlearning.randomthings.tilegame.Game;
+import com.jmlearning.randomthings.tilegame.Handler;
 
 import java.awt.*;
 
 public class MenuState extends State {
     
-    public MenuState(Game game) {
+    public MenuState(Handler handler) {
     
-        super(game);
+        super(handler);
     }
     
     @Override
