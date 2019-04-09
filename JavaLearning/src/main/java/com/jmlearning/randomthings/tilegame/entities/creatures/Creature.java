@@ -1,6 +1,7 @@
 package com.jmlearning.randomthings.tilegame.entities.creatures;
 
 import com.jmlearning.randomthings.tilegame.Game;
+import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.entities.Entity;
 
 public abstract class Creature extends Entity {
@@ -14,9 +15,9 @@ public abstract class Creature extends Entity {
     protected float speed;
     protected float xMove, yMove;
     
-    public Creature(Game game, float x, float y, int width, int height) {
+    public Creature(Handler handler, float x, float y, int width, int height) {
         
-        super(game, x, y, width, height);
+        super(handler, x, y, width, height);
         health = DEFAULT_HP;
         speed = DEFAULT_SPD;
         xMove = 0;
