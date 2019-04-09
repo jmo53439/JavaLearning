@@ -55,6 +55,11 @@ public class World {
     
     public Tile getTile(int x, int y) {
         
+        if(x < 0 || y < 0 || x >= width || y >= height) {
+            
+            return grassTile;
+        }
+        
         Tile t = Tile.tiles[tiles[x][y]];
         
         if(t == null)
