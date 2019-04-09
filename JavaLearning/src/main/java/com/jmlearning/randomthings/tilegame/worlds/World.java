@@ -1,25 +1,23 @@
 package com.jmlearning.randomthings.tilegame.worlds;
 
-import com.jmlearning.randomthings.tilegame.Game;
+import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.tiles.Tile;
 import com.jmlearning.randomthings.tilegame.utils.Utils;
 
 import java.awt.*;
 
-import static com.jmlearning.randomthings.tilegame.tiles.Tile.TILE_HEIGHT;
-import static com.jmlearning.randomthings.tilegame.tiles.Tile.TILE_WIDTH;
-import static com.jmlearning.randomthings.tilegame.tiles.Tile.dirtTile;
+import static com.jmlearning.randomthings.tilegame.tiles.Tile.*;
 
 public class World {
     
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tiles;
-    private Game game;
+    private Handler handler;
     
-    public World(Game game, String path) {
+    public World(Handler handler, String path) {
         
-        this.game = game;
+        this.handler = handler;
         loadWorld(path);
     }
     
@@ -37,20 +35,20 @@ public class World {
 //            }
 //        }
         
-        int xStart = (int) Math.max(0, game.getGameCamera().getxOffset() / TILE_WIDTH);
-        int xEnd = (int) Math.min(width, (game.getGameCamera().getxOffset() +
-                game.getWidth()) / TILE_WIDTH + 1);
-        int yStart = (int) Math.max(0, game.getGameCamera().getyOffset() / TILE_HEIGHT);
-        int yEnd = (int) Math.min(height, (game.getGameCamera().getyOffset() +
-                game.getHeight()) / TILE_HEIGHT + 1);
+        int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / TILE_WIDTH);
+        int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() +
+                handler.getWidth()) / TILE_WIDTH + 1);
+        int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / TILE_HEIGHT);
+        int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() +
+                handler.getHeight()) / TILE_HEIGHT + 1);
         
         for(int y = yStart; y < yEnd; y++) {
             
             for(int x = xStart; x < xEnd; x++) {
             
                 getTile(x, y)
-                        .render(g, (int)(x * TILE_WIDTH - game.getGameCamera().getxOffset()),
-                                (int)(y * TILE_HEIGHT - game.getGameCamera().getyOffset()));
+                        .render(g, (int)(x * TILE_WIDTH - handler.getGameCamera().getxOffset()),
+                                (int)(y * TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
     }
