@@ -11,10 +11,10 @@ public class Player extends Creature {
         
         super(handler, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
         
-        bounds.x = 16;
-        bounds.y = 32;
-        bounds.width = 32;
-        bounds.height = 32;
+        bounds.x = 22;
+        bounds.y = 30;
+        bounds.width = 19;
+        bounds.height = 33;
     }
     
     @Override
@@ -49,9 +49,9 @@ public class Player extends Creature {
         g.drawImage(Assets.player, (int)(x - handler.getGameCamera().getxOffset()),
                 (int)(y - handler.getGameCamera().getyOffset()),
                 width, height, null);
-        g.setColor(Color.RED);
-        g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
-                (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
-                bounds.width, bounds.height);
+//        g.setColor(Color.RED);
+//        g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
+//                (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
+//                bounds.width, bounds.height);
     }
 }
