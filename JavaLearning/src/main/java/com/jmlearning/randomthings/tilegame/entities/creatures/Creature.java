@@ -3,6 +3,9 @@ package com.jmlearning.randomthings.tilegame.entities.creatures;
 import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.entities.Entity;
 
+import static com.jmlearning.randomthings.tilegame.tiles.Tile.TILE_HEIGHT;
+import static com.jmlearning.randomthings.tilegame.tiles.Tile.TILE_WIDTH;
+
 public abstract class Creature extends Entity {
     
     public static final int DEFAULT_HP = 10;
@@ -27,6 +30,59 @@ public abstract class Creature extends Entity {
         
         x += xMove;
         y += yMove;
+    }
+    
+    public void moveX() {
+        
+        if(xMove > 0) {
+            
+            int tx = (int)(x + xMove + bounds.x + bounds.width) / TILE_WIDTH;
+            
+            if(!collisionWithTile(tx, (int)(y + bounds.y) / TILE_HEIGHT) &&
+                    !collisionWithTile(tx, (int)(y + bounds.y + bounds.height) / TILE_HEIGHT)) {
+                
+                x += xMove;
+            }
+        }
+        else if(xMove < 0) {
+            
+            int tx = (int)(x + xMove + bounds.x) / TILE_WIDTH;
+            
+            if(!collisionWithTile(tx, (int)(y + bounds.y) / TILE_HEIGHT) &&
+                    !collisionWithTile(tx, (int)(y + bounds.y + bounds.height) / TILE_HEIGHT)) {
+                
+                x += xMove;
+            }
+        }
+    }
+    
+    public void moveY() {
+    
+        if(yMove < 0) {
+            
+            int ty = (int)(y + yMove + bounds.y) / TILE_HEIGHT;
+            
+            if(!collisionWithTile((int)(x + bounds.x) / TILE_WIDTH, ty) &&
+                    !collisionWithTile((int)(x + bounds.x + bounds.width) / TILE_WIDTH, ty)) {
+                
+                y += yMove;
+            }
+        }
+        else if(yMove > 0) {
+            
+            int ty = (int)(y + yMove + bounds.y + bounds.height) / TILE_HEIGHT;
+            
+            if(!collisionWithTile((int)(x + bounds.x) / TILE_WIDTH, ty) &&
+                    !collisionWithTile((int)(x + bounds.x + bounds.width) / TILE_WIDTH, ty)) {
+                
+                y += yMove;
+            }
+        }
+    }
+    
+    protected boolean collisionWithTile(int x, int y) {
+        
+        return handler.getWorld().getTile(x, y).isSolid();
     }
     
     public int getHealth() {
