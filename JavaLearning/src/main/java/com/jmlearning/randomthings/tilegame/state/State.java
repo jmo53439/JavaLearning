@@ -1,17 +1,17 @@
 package com.jmlearning.randomthings.tilegame.states;
 
-import com.jmlearning.randomthings.tilegame.Game;
+import com.jmlearning.randomthings.tilegame.Handler;
 
 import java.awt.*;
 
 public abstract class State {
     
     private static State currentState = null;
-    protected Game game;
+    protected Handler handler;
     
-    public State(Game game) {
+    public State(Handler handler) {
         
-        this.game = game;
+        this.handler = handler;
     }
     
     public abstract void tick();
