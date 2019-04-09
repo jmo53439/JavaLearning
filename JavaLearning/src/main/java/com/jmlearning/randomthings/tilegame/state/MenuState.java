@@ -4,26 +4,20 @@ import com.jmlearning.randomthings.tilegame.Handler;
 
 import java.awt.*;
 
-public abstract class State {
+public class MenuState extends State {
     
-    private static State currentState = null;
-    protected Handler handler;
+    public MenuState(Handler handler) {
     
-    public State(Handler handler) {
-        
-        this.handler = handler;
+        super(handler);
     }
     
-    public abstract void tick();
-    public abstract void render(Graphics g);
+    @Override
+    public void tick() {
     
-    public static State getState() {
-        
-        return currentState;
     }
     
-    public static void setState(State state) {
-        
-        currentState = state;
+    @Override
+    public void render(Graphics g) {
+    
     }
 }
