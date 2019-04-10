@@ -1,6 +1,9 @@
 package com.jmlearning.randomthings.tilegame.worlds;
 
 import com.jmlearning.randomthings.tilegame.Handler;
+import com.jmlearning.randomthings.tilegame.entities.EntityManager;
+import com.jmlearning.randomthings.tilegame.entities.creatures.Player;
+import com.jmlearning.randomthings.tilegame.entities.fixedobjects.Tree;
 import com.jmlearning.randomthings.tilegame.tiles.Tile;
 import com.jmlearning.randomthings.tilegame.utils.Utils;
 
@@ -14,26 +17,27 @@ public class World {
     private int spawnX, spawnY;
     private int[][] tiles;
     private Handler handler;
+    private EntityManager entityManager;
     
     public World(Handler handler, String path) {
         
         this.handler = handler;
+        
+        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManager.addEntity(new Tree(handler, 100, 250));
+        entityManager.addEntity(new Tree(handler, 100, 350));
+        entityManager.addEntity(new Tree(handler, 100, 450));
         loadWorld(path);
+        entityManager.getPlayer().setX(spawnX);
+        entityManager.getPlayer().setY(spawnY);
     }
     
     public void tick() {
     
+        entityManager.tick();
     }
     
     public void render(Graphics g) {
-        
-//        for(int y = 0; y < height; y++) {
-//
-//            for(int x = 0; x < width; x++) {
-//
-//                getTile(x, y).render(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-//            }
-//        }
         
         int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / TILE_WIDTH);
         int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() +
