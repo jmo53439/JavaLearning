@@ -25,8 +25,8 @@ public class World {
         
         entityManager = new EntityManager(handler, new Player(handler, 100, 100));
         entityManager.addEntity(new Tree(handler, 100, 250));
-        entityManager.addEntity(new Tree(handler, 100, 350));
         entityManager.addEntity(new Tree(handler, 100, 450));
+        entityManager.addEntity(new Tree(handler, 100, 650));
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
@@ -55,6 +55,8 @@ public class World {
                                 (int)(y * TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
+        
+        entityManager.render(g);
     }
     
     public Tile getTile(int x, int y) {
@@ -99,5 +101,10 @@ public class World {
     public int getHeight() {
         
         return height;
+    }
+    
+    public EntityManager getEntityManager() {
+        
+        return entityManager;
     }
 }
