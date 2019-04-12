@@ -5,6 +5,7 @@ import com.jmlearning.randomthings.tilegame.entities.creatures.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class EntityManager {
     
@@ -20,6 +21,14 @@ public class EntityManager {
         addEntity(player);
     }
     
+    private Comparator<Entity> renderSorter = (a, b) -> {
+    
+        if(a.getY() + a.getHeight() < b.getY() + b.getHeight())
+            return -1;
+        
+        return 1;
+    };
+    
     public void tick() {
         
         for(int i = 0; i < entities.size(); i++) {
@@ -27,6 +36,8 @@ public class EntityManager {
             Entity e = entities.get(i);
             e.tick();
         }
+        
+        entities.sort(renderSorter);
     }
     
     public void render(Graphics g) {
