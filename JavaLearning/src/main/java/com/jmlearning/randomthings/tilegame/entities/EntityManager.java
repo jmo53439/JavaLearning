@@ -13,6 +13,14 @@ public class EntityManager {
     private Player player;
     private ArrayList<Entity> entities;
     
+    private Comparator<Entity> renderSorter = (a, b) -> {
+        
+        if(a.getY() + a.getHeight() < b.getY() + b.getHeight())
+            return -1;
+        
+        return 1;
+    };
+    
     public EntityManager(Handler handler, Player player) {
         
         this.handler = handler;
@@ -20,14 +28,6 @@ public class EntityManager {
         entities = new ArrayList <>();
         addEntity(player);
     }
-    
-    private Comparator<Entity> renderSorter = (a, b) -> {
-    
-        if(a.getY() + a.getHeight() < b.getY() + b.getHeight())
-            return -1;
-        
-        return 1;
-    };
     
     public void tick() {
         
