@@ -3,6 +3,7 @@ package com.jmlearning.randomthings.tilegame.worlds;
 import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.entities.EntityManager;
 import com.jmlearning.randomthings.tilegame.entities.creatures.Player;
+import com.jmlearning.randomthings.tilegame.entities.fixedobjects.Rock;
 import com.jmlearning.randomthings.tilegame.entities.fixedobjects.Tree;
 import com.jmlearning.randomthings.tilegame.tiles.Tile;
 import com.jmlearning.randomthings.tilegame.utils.Utils;
@@ -25,8 +26,7 @@ public class World {
         
         entityManager = new EntityManager(handler, new Player(handler, 100, 100));
         entityManager.addEntity(new Tree(handler, 100, 250));
-//        entityManager.addEntity(new Tree(handler, 100, 450));
-//        entityManager.addEntity(new Tree(handler, 100, 650));
+        entityManager.addEntity(new Rock(handler, 100, 450));
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
