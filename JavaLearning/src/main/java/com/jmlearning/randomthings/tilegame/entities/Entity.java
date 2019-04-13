@@ -6,7 +6,7 @@ import java.awt.*;
 
 public abstract class Entity {
     
-    public static final int DEFAULT_HP = 10;
+    public static final int DEFAULT_HP = 3;
     
     protected Handler handler;
     protected float x, y;
