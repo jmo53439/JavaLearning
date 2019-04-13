@@ -4,6 +4,7 @@ import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.entities.Entity;
 import com.jmlearning.randomthings.tilegame.gfx.Animation;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
+import com.jmlearning.randomthings.tilegame.inventory.Inventory;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,7 @@ public class Player extends Creature {
     
     private Animation animateUp, animateDown, animateLeft, animateRight;
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+    private Inventory inventory;
     
     public Player(Handler handler, float x, float y) {
         
@@ -26,6 +28,8 @@ public class Player extends Creature {
         animateDown = new Animation(500, Assets.playerDown);
         animateLeft = new Animation(500, Assets.playerLeft);
         animateRight = new Animation(500, Assets.playerRight);
+        
+        inventory = new Inventory(handler);
     }
     
     @Override
@@ -43,6 +47,7 @@ public class Player extends Creature {
         animateRight.tick();
         
         checkAttacks();
+        inventory.tick();
     }
     
     private void checkAttacks() {
@@ -123,11 +128,7 @@ public class Player extends Creature {
                 (int)(x - handler.getGameCamera().getxOffset()),
                 (int)(y - handler.getGameCamera().getyOffset()),
                 width, height, null);
-                
-//        g.setColor(Color.RED);
-//        g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
-//                (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
-//                bounds.width, bounds.height);
+        inventory.render(g);
     }
     
     @Override
@@ -154,5 +155,15 @@ public class Player extends Creature {
             
             return animateDown.getCurrentFrame();
         }
+    }
+    
+    public Inventory getInventory() {
+        
+        return inventory;
+    }
+    
+    public void setInventory(Inventory inventory) {
+        
+        this.inventory = inventory;
     }
 }
