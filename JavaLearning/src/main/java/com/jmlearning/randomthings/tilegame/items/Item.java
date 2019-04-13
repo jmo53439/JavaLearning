@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class Item {
     
-    public static final int ITEM_WIDTH = 32, ITEM_HEIGHT = 32, PICKED_UP = -1;
+    public static final int ITEM_WIDTH = 32, ITEM_HEIGHT = 32;
     
     public static Item[] items = new Item[256];
     public static Item woodItem = new Item(Assets.wood, "Wood", 0);
@@ -19,6 +19,8 @@ public class Item {
     protected String name;
     protected final int id;
     protected int x, y, count;
+    protected Rectangle bounds;
+    protected boolean pickedUp = false;
     
     public Item(BufferedImage texture, String name, int id) {
         
@@ -26,11 +28,22 @@ public class Item {
         this.name = name;
         this.id = id;
         count = 1;
+        bounds = new Rectangle(x, y, ITEM_WIDTH, ITEM_HEIGHT);
         items[id] = this;
     }
     
     public void tick() {
     
+        if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(
+                0f, 0f).intersects(bounds)) {
+            
+            pickedUp = true;
+            handler.getWorld()
+                    .getEntityManager()
+                    .getPlayer()
+                    .getInventory()
+                    .addItem(this);
+        }
     }
     
     public void render(Graphics g) {
@@ -59,6 +72,8 @@ public class Item {
         
         this.x = x;
         this.y = y;
+        bounds.x = x;
+        bounds.y = y;
     }
     
     public Handler getHandler() {
@@ -124,5 +139,10 @@ public class Item {
     public void setCount(int count) {
         
         this.count = count;
+    }
+    
+    public boolean isPickedUp() {
+        
+        return pickedUp;
     }
 }
