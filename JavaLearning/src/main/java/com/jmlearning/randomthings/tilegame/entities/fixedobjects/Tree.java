@@ -2,6 +2,7 @@ package com.jmlearning.randomthings.tilegame.entities.fixedobjects;
 
 import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
+import com.jmlearning.randomthings.tilegame.items.Item;
 
 import java.awt.*;
 
@@ -26,16 +27,19 @@ public class Tree extends StaticEntity {
     }
     
     @Override
-    public void die() {
-    
-    }
-    
-    @Override
     public void render(Graphics g) {
     
         g.drawImage(Assets.tree,
                 (int)(x - handler.getGameCamera().getxOffset()),
                 (int)(y - handler.getGameCamera().getyOffset()),
                 width, height, null);
+    }
+    
+    @Override
+    public void die() {
+        
+        handler.getWorld()
+                .getItemManager()
+                .addItem(Item.woodItem.createNew((int) x, (int) y));
     }
 }
