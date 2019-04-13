@@ -4,6 +4,7 @@ import com.jmlearning.randomthings.tilegame.display.Display;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
 import com.jmlearning.randomthings.tilegame.gfx.GameCamera;
 import com.jmlearning.randomthings.tilegame.input.KeyManager;
+import com.jmlearning.randomthings.tilegame.input.MouseManager;
 import com.jmlearning.randomthings.tilegame.states.GameState;
 import com.jmlearning.randomthings.tilegame.states.MenuState;
 import com.jmlearning.randomthings.tilegame.states.State;
@@ -20,9 +21,10 @@ public class Game implements Runnable {
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
-    private State gameState;
-    private State menuState;
+    public State gameState;
+    public State menuState;
     private KeyManager keyManager;
+    private MouseManager mouseManager;
     private GameCamera gameCamera;
     private Handler handler;
     
@@ -32,6 +34,7 @@ public class Game implements Runnable {
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
+        mouseManager = new MouseManager();
     }
     
     @Override
@@ -77,13 +80,17 @@ public class Game implements Runnable {
       
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
     
         handler = new Handler(this);
         gameCamera = new GameCamera(handler, 0, 0);
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        State.setState(gameState);
+        State.setState(menuState);
     }
     
     private void tick() {
@@ -122,6 +129,11 @@ public class Game implements Runnable {
     public KeyManager getKeyManager() {
         
         return keyManager;
+    }
+    
+    public MouseManager getMouseManager() {
+        
+        return mouseManager;
     }
     
     public GameCamera getGameCamera() {
