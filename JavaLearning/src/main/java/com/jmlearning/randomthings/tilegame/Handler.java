@@ -2,6 +2,7 @@ package com.jmlearning.randomthings.tilegame;
 
 import com.jmlearning.randomthings.tilegame.gfx.GameCamera;
 import com.jmlearning.randomthings.tilegame.input.KeyManager;
+import com.jmlearning.randomthings.tilegame.input.MouseManager;
 import com.jmlearning.randomthings.tilegame.worlds.World;
 
 public class Handler {
@@ -42,6 +43,11 @@ public class Handler {
     public KeyManager getKeyManager() {
         
         return game.getKeyManager();
+    }
+    
+    public MouseManager getMouseManager() {
+        
+        return game.getMouseManager();
     }
     
     public int getWidth() {
