@@ -8,7 +8,6 @@ import static com.jmlearning.randomthings.tilegame.tiles.Tile.TILE_WIDTH;
 
 public abstract class Creature extends Entity {
     
-    public static final int DEFAULT_HP = 10;
     public static final float DEFAULT_SPD = 3.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 64,
             DEFAULT_CREATURE_HEIGHT = 64;
