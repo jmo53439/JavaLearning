@@ -2,6 +2,7 @@ package com.jmlearning.randomthings.tilegame.entities.fixedobjects;
 
 import com.jmlearning.randomthings.tilegame.Handler;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
+import com.jmlearning.randomthings.tilegame.items.Item;
 
 import java.awt.*;
 
@@ -36,5 +37,8 @@ public class Rock extends StaticEntity {
     @Override
     public void die() {
     
+        handler.getWorld()
+                .getItemManager()
+                .addItem(Item.rockItem.createNew((int) x, (int) y));
     }
 }
