@@ -5,6 +5,7 @@ import com.jmlearning.randomthings.tilegame.entities.EntityManager;
 import com.jmlearning.randomthings.tilegame.entities.creatures.Player;
 import com.jmlearning.randomthings.tilegame.entities.fixedobjects.Rock;
 import com.jmlearning.randomthings.tilegame.entities.fixedobjects.Tree;
+import com.jmlearning.randomthings.tilegame.items.ItemManager;
 import com.jmlearning.randomthings.tilegame.tiles.Tile;
 import com.jmlearning.randomthings.tilegame.utils.Utils;
 
@@ -19,12 +20,14 @@ public class World {
     private int[][] tiles;
     private Handler handler;
     private EntityManager entityManager;
+    private ItemManager itemManager;
     
     public World(Handler handler, String path) {
         
         this.handler = handler;
         
         entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+        itemManager = new ItemManager(handler);
         entityManager.addEntity(new Tree(handler, 100, 250));
         entityManager.addEntity(new Rock(handler, 100, 450));
         loadWorld(path);
@@ -34,6 +37,7 @@ public class World {
     
     public void tick() {
     
+        itemManager.tick();
         entityManager.tick();
     }
     
@@ -56,6 +60,7 @@ public class World {
             }
         }
         
+        itemManager.render(g);
         entityManager.render(g);
     }
     
@@ -106,5 +111,25 @@ public class World {
     public EntityManager getEntityManager() {
         
         return entityManager;
+    }
+    
+    public Handler getHandler() {
+        
+        return handler;
+    }
+    
+    public void setHandler(Handler handler) {
+        
+        this.handler = handler;
+    }
+    
+    public ItemManager getItemManager() {
+        
+        return itemManager;
+    }
+    
+    public void setItemManager(ItemManager itemManager) {
+        
+        this.itemManager = itemManager;
     }
 }
