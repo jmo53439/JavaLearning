@@ -1,6 +1,7 @@
 package com.jmlearning.randomthings.tilegame.entities.creatures;
 
 import com.jmlearning.randomthings.tilegame.Handler;
+import com.jmlearning.randomthings.tilegame.entities.Entity;
 import com.jmlearning.randomthings.tilegame.gfx.Animation;
 import com.jmlearning.randomthings.tilegame.gfx.Assets;
 
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature {
     
     private Animation animateUp, animateDown, animateLeft, animateRight;
+    private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
     
     public Player(Handler handler, float x, float y) {
         
@@ -39,6 +41,61 @@ public class Player extends Creature {
         animateDown.tick();
         animateLeft.tick();
         animateRight.tick();
+        
+        checkAttacks();
+    }
+    
+    private void checkAttacks() {
+        
+        attackTimer += System.currentTimeMillis() - lastAttackTimer;
+        lastAttackTimer = System.currentTimeMillis();
+        
+        if(attackTimer < attackCooldown)
+            return;
+        
+        Rectangle cb = getCollisionBounds(0, 0);
+        Rectangle ar = new Rectangle();
+        int arSize = 20;
+        ar.width = arSize;
+        ar.height = arSize;
+        
+        if(handler.getKeyManager().aUp) {
+            
+            ar.x = cb.x + cb.width / 2 - arSize / 2;
+            ar.y = cb.y - arSize;
+        }
+        else if(handler.getKeyManager().aDown) {
+            
+            ar.x = cb.x + cb.width / 2 - arSize / 2;
+            ar.y = cb.y + cb.height;
+        }
+        else if(handler.getKeyManager().aLeft) {
+    
+            ar.x = cb.x - arSize;
+            ar.y = cb.y + cb.height / 2 - arSize / 2;
+        }
+        else if(handler.getKeyManager().aRight) {
+    
+            ar.x = cb.x + cb.width;
+            ar.y = cb.y + cb.height / 2 - arSize / 2;
+        }
+        else {
+            
+            return;
+        }
+        
+        attackTimer = 0;
+        
+        for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+            
+            if(e.equals(this))
+                continue;
+            
+            if(e.getCollisionBounds(0, 0).intersects(ar))
+                e.hurt(1);
+            
+            return;
+        }
     }
     
     private void getInput() {
@@ -71,6 +128,12 @@ public class Player extends Creature {
 //        g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
 //                (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
+    }
+    
+    @Override
+    public void die() {
+        
+        System.out.println("You Lose");
     }
     
     private BufferedImage getCurrentAnimationFrame() {
