@@ -68,6 +68,14 @@ public class Item {
         return i;
     }
     
+    public Item createNew(int count) {
+        
+        Item i = new Item(texture, name, id);
+        i.setPickedUp(true);
+        
+        return i;
+    }
+    
     public void setPosition(int x, int y) {
         
         this.x = x;
@@ -144,5 +152,10 @@ public class Item {
     public boolean isPickedUp() {
         
         return pickedUp;
+    }
+    
+    public void setPickedUp(boolean pickedUp) {
+        
+        this.pickedUp = pickedUp;
     }
 }
