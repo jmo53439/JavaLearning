@@ -28,10 +28,11 @@ public class World {
         
         entityManager = new EntityManager(handler, new Player(handler, 100, 100));
         itemManager = new ItemManager(handler);
-        entityManager.addEntity(new Tree(handler, 130, 250));
-        entityManager.addEntity(new Rock(handler, 130, 450));
-        entityManager.addEntity(new Tree(handler, 130, 650));
-        entityManager.addEntity(new Rock(handler, 130, 850));
+        entityManager.addEntity(new Tree(handler, 132, 250));
+        entityManager.addEntity(new Rock(handler, 132, 450));
+        entityManager.addEntity(new Rock(handler, 350, 300));
+        entityManager.addEntity(new Rock(handler, 400, 345));
+        entityManager.addEntity(new Tree(handler, 625, 325));
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
