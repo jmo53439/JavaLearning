@@ -10,12 +10,12 @@ public class Assets {
     public static BufferedImage[] playerUp, playerDown, playerLeft, playerRight;
     public static BufferedImage[] zombieUp, zombieDown, zombieLeft, zombieRight;
     public static BufferedImage[] btnStart;
-//    public static Font font28;
+    public static Font font28;
     public static BufferedImage inventoryScreen;
     
     public static void init() {
     
-//        font28 = FontLoader.loadFont("res/fonts/slkscr.ttf", 28);
+        font28 = FontLoader.loadFont("/fonts/slkscr.ttf", 28);
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
         inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");
         
