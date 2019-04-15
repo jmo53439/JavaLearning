@@ -131,6 +131,11 @@ public class Player extends Creature {
         inventory.render(g);
     }
     
+    public void postRender(Graphics g) {
+        
+        inventory.render(g);
+    }
+    
     @Override
     public void die() {
         
